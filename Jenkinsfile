@@ -38,7 +38,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'personal-docker-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                     sh '''
                     echo "Pushing Docker images to Docker Hub..."
-                    echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+                    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
                     docker push stevenburkard/auto-dockerize-react-app:latest
                 '''
                 }
